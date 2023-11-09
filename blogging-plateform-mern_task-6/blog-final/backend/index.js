@@ -7,6 +7,7 @@ const { default: mongoose } = require("mongoose");
 const app = express();
 const dotenv = require("dotenv");
 const authRoute = require("./routes/auth");
+const userRoute = require("./routes/users");
 
 //database
 const connectDB = async () => {
@@ -22,6 +23,7 @@ const connectDB = async () => {
 dotenv.config();
 app.use(express.json()); //When clients (e.g., web browsers or other services) send data to your server using the JSON format, this middleware automatically parses that JSON data and makes it accessible in your route handlers through req.body.
 app.use("/api/auth", authRoute);
+app.use("/api/users", userRoute);
 
 app.listen(process.env.PORT, () => {
   connectDB();
